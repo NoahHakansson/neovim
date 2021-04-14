@@ -7,6 +7,9 @@ set nu
 set re=1
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
+nmap <silent> <S-k> :<C-U>call CocAction('doHover')<CR>
+" bind ESC to close poups.
+nmap <Esc> :call coc#float#close_all() <CR>
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
@@ -65,6 +68,7 @@ Plug 'tpope/vim-endwise'
 " More Autocomplete
 " Plug 'neovim/nvim-lsp' " nvim-lsp
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'liuchengxu/vim-which-key'
 " Show vertical lines
