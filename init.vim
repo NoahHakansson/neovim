@@ -9,7 +9,7 @@ set re=1
 let mapleader="\<SPACE>"
 nmap <silent> <S-k> :<C-U>call CocAction('doHover')<CR>
 " bind ESC to close poups.
-nmap <Esc> :call coc#float#close_all() <CR>
+nmap <silent> <Esc> :call coc#float#close_all() <CR>
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
@@ -28,6 +28,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'jremmen/vim-ripgrep'
+Plug 'unblevable/quick-scope'
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -107,6 +109,13 @@ colorscheme gruvbox-material
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
 
+" Ranger (rnvimr) config
+" Make Ranger replace netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+nmap <space>r :RnvimrToggle<CR>
+" Ranger (rnvimr) config END
+
 " highlight NoBreakingSpace guibg=red guifg=white ctermbg=red ctermfg=white
 " syntax match NoBreakingSpace / /
 
@@ -143,6 +152,16 @@ let g:dirvish_mode = ':sort ,^\v(.*[\/])|\ze,'
 " Statusline
 set laststatus=2
 set statusline=%!CreateStatusline()
+
+" Quickscope config
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#afff5f' gui=underline ctermfg=81 cterm=underline
+
+let g:qs_max_chars=150
+" Quickscope config END
 
 " Colors for ALE in statusline
 hi WarningColor guibg=#E5C07B guifg=#1E1E1E ctermbg=Yellow ctermfg=Black
@@ -222,6 +241,22 @@ nnoremap <leader>g :Rg<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
 
+" sneak cofig
+let g:sneak#label = 1
+
+" case insensitive sneak
+let g:sneak#use_ic_scs = 1
+
+" immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
+let g:sneak#s_next = 1
+
+" Change the colors
+highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
+highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+
+" Cool prompts
+let g:sneak#prompt = '🥷> '
+" sneak config END
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
@@ -293,7 +328,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-nnoremap <Leader>r :ALEFix<CR>
+" nnoremap <Leader>r :ALEFix<CR>
 " Fix <C-h>
 nmap <BS> <C-w>h
 " Switch between the last two files
