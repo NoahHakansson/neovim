@@ -111,9 +111,10 @@ colorscheme gruvbox-material
 
 " Ranger (rnvimr) config
 " Make Ranger replace netrw and be the file explorer
+let g:NERDTreeHijackNetrw = 0
 let g:rnvimr_ex_enable = 1
 
-nmap <space>r :RnvimrToggle<CR>
+nmap <silent> <space>r :RnvimrToggle<CR>
 " Ranger (rnvimr) config END
 
 " highlight NoBreakingSpace guibg=red guifg=white ctermbg=red ctermfg=white
