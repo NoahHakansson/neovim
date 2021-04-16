@@ -14,6 +14,8 @@ map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
+nnoremap <silent> <leader>t :FloatermToggle<CR>
+tnoremap <silent> <leader>t <C-\><C-n>:FloatermToggle<CR>
 " 24-bit color support
 set termguicolors
 
@@ -30,6 +32,7 @@ Plug 'airblade/vim-rooter'
 Plug 'jremmen/vim-ripgrep'
 Plug 'unblevable/quick-scope'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'voldikss/vim-floaterm'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -239,7 +242,6 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 map <leader>f :Files<CR>
 map <leader>b :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
-nnoremap <leader>t :Tags<CR>
 nnoremap <leader>m :Marks<CR>
 
 " sneak cofig
