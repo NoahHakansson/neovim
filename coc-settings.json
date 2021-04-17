@@ -31,5 +31,5 @@
 //    }
 //}
 {
-    "clangd.semanticHighlighting": false
+    "clangd.semanticHighlighting": true
 }

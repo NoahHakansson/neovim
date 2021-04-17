@@ -33,6 +33,8 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'unblevable/quick-scope'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'voldikss/vim-floaterm'
+Plug 'preservim/nerdcommenter'
+Plug 'LunarWatcher/auto-pairs', { 'tag': '*' }
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -60,10 +62,6 @@ Plug 'kristijanhusak/vim-dirvish-git'
 
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'tmsvg/pear-tree'
-" Automatically adds ends wisely
-Plug 'tpope/vim-endwise'
 
 " Dark powered asynchronous completion framework for neovim
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -111,6 +109,11 @@ colorscheme gruvbox-material
 " Highlight no breaking space characters
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
+
+" nerdcommenter
+let g:NERDCreateDefaultMappings = 0
+nnoremap <silent> <leader>c :call NERDComment(1, 'toggle')<CR>
+vnoremap <silent> <leader>c :call NERDComment(1, 'toggle')<CR>
 
 " Ranger (rnvimr) config
 " Make Ranger replace netrw and be the file explorer
@@ -323,8 +326,6 @@ function ToggleNerdTreeFile()
 endfunction
 
 nmap - :Dirvish %<CR>
-" Make sure PearTree works with endwise
-imap <CR> <Plug>(PearTreeExpand)<Plug>DiscretionaryEnd
 map <leader>n :call ToggleNerdTreeFile()<CR>
 "" Quicker window movement
 nnoremap <C-j> <C-w>j
