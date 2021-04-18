@@ -5,8 +5,14 @@ set ruler
 set nowritebackup
 set nu
 set re=1
+set ignorecase
+set smartcase
+set noshowmode
+set titlestring=Neovim\ \-\ %t
+set title
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nmap <silent> <S-k> :<C-U>call CocAction('doHover')<CR>
 " bind ESC to close poups.
 nmap <silent> <Esc> :call coc#float#close_all() <CR>
@@ -35,6 +41,8 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'voldikss/vim-floaterm'
 Plug 'preservim/nerdcommenter'
 Plug 'LunarWatcher/auto-pairs', { 'tag': '*' }
+Plug 'itchyny/lightline.vim'
+Plug 'mhinz/vim-startify'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -89,6 +97,12 @@ call plug#end()
 " https://github.com/joshdick/onedark.vim#neovim
 " let g:onedark_termcolors = 16
 " set background=dark
+" Floaterm
+" Floaterm
+let g:floaterm_width=0.6
+let g:floaterm_height=0.7
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
 " COLORSCHEME ---------------------------------------------------
 " let g:palenight_color_overrides = overrides#GetColors()
 " c++ style auto format
@@ -106,6 +120,7 @@ let g:cpp_class_decl_highlight = 1
 let g:gruvbox_material_palette = 'original'
 let g:gruvbox_material_background = 'hard'
 colorscheme gruvbox-material
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
 " Highlight no breaking space characters
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
@@ -158,7 +173,7 @@ let g:signify_sign_change = '~'
 let g:dirvish_mode = ':sort ,^\v(.*[\/])|\ze,'
 " Statusline
 set laststatus=2
-set statusline=%!CreateStatusline()
+"set statusline=%!CreateStatusline()
 
 " Quickscope config
 " Trigger a highlight in the appropriate direction when pressing these keys:
@@ -338,9 +353,9 @@ nmap <BS> <C-w>h
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 " Search and Replace
-nmap <Leader>s :%s//g<Left><Left>
+"nmap <Leader>s :%s//g<Left><Left>
 " Find all occurences
-nnoremap <leader>g :Rg<cr>
+"nnoremap <leader>g :Rg<cr>
 " Catch :W save typo and turn it into :w so the save works anyway
 command! W  write
 " Catch :Q quit typo and turn it into :q so the quit works anyway
