@@ -14,12 +14,28 @@ set title
 let mapleader="\<SPACE>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nmap <silent> <S-k> :<C-U>call CocAction('doHover')<CR>
-" bind ESC to close poups.
-nmap <silent> <Esc> :call coc#float#close_all() <CR>
+" bind ESC to close poups and remove highlighting from search.
+nmap <silent> <Esc> :call coc#float#close_all() <bar> :noh <CR>
+" unbind arrow keys and backspace+enter
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
+nmap <BS> <nop>
+nmap <CR> <nop>
+" TAB bidnings
+nnoremap <Leader>1 1gt
+nnoremap <Leader>2 2gt
+nnoremap <Leader>3 3gt
+nnoremap <Leader>4 4gt
+nnoremap <Leader>5 5gt
+nnoremap <Leader>6 6gt
+nnoremap <Leader>7 7gt
+nnoremap <Leader>8 8gt
+nnoremap <Leader>9 9gt
+nnoremap <silent> <TAB> :tabn<CR>
+
+" floaterm
 nnoremap <silent> <leader>t :FloatermToggle<CR>
 tnoremap <silent> <leader>t <C-\><C-n>:FloatermToggle<CR>
 " 24-bit color support
@@ -257,7 +273,7 @@ let g:fzf_action = {
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-map <leader>f :Files<CR>
+map <leader>f :Files ~/<CR>
 map <leader>b :Buffers<CR>
 nnoremap <leader>g :Rg<CR>
 nnoremap <leader>m :Marks<CR>
@@ -347,9 +363,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
-" nnoremap <Leader>r :ALEFix<CR>
-" Fix <C-h>
-nmap <BS> <C-w>h
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 " Search and Replace
@@ -493,5 +506,3 @@ map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" space w to save file
-nnoremap <Leader>w :w!<CR>
