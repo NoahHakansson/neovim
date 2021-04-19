@@ -36,8 +36,12 @@ nnoremap <Leader>9 9gt
 nnoremap <silent> <TAB> :tabn<CR>
 
 " floaterm
-nnoremap <silent> <leader>t :FloatermToggle<CR>
-tnoremap <silent> <leader>t <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent> <S-t> :FloatermToggle<CR>
+tnoremap <silent> <S-t> <C-\><C-n>:FloatermToggle<CR>
+let g:floaterm_width=0.6
+let g:floaterm_height=0.7
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
 " 24-bit color support
 set termguicolors
 
