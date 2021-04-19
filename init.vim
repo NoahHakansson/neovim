@@ -13,7 +13,7 @@ set title
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-nmap <silent> <S-k> :<C-U>call CocAction('doHover')<CR>
+nnoremap <silent> <S-k> :call CocActionAsync('doHover')<CR>
 " bind ESC to close poups and remove highlighting from search.
 nmap <silent> <Esc> :call coc#float#close_all() <bar> :noh <CR>
 " unbind arrow keys and backspace+enter
