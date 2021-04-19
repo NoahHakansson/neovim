@@ -140,10 +140,15 @@ let g:cpp_class_decl_highlight = 1
 let g:gruvbox_material_palette = 'original'
 let g:gruvbox_material_background = 'hard'
 colorscheme gruvbox-material
-let g:lightline = {'colorscheme' : 'gruvbox_material'}
 " Highlight no breaking space characters
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
+
+" Lightline config
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox_material',
+      \ }
+" Lightline config END
 
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 0
