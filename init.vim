@@ -163,6 +163,12 @@ let g:rnvimr_ex_enable = 1
 nmap <silent> <space>r :RnvimrToggle<CR>
 " Ranger (rnvimr) config END
 
+" Coc config
+" Bind tab and shift-tab to navigate autocomplete selection list.
+inoremap <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
+" Coc config END
+
 " highlight NoBreakingSpace guibg=red guifg=white ctermbg=red ctermfg=white
 " syntax match NoBreakingSpace / /
 
