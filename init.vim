@@ -154,7 +154,7 @@ let g:rainbow_conf = {
 \   'guifgs': ['#8be9fd', '#50fa7b', '#ffff59', '#ff5555'],
 \   'guis': [''],
 \   'cterms': [''],
-\   'operators': '_=\|+\|\*\|-\||\|&\|!\|?\|<\|>\|%\|/[^/]_',
+\   'operators': '_=\|+\|\*\|-\||\|&\|;\|!\|?\|<\|>\|%\|/[^/]_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \   'separately': {
 \       '*': {},
@@ -337,7 +337,7 @@ highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
 highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
 
 " Cool prompts
-let g:sneak#prompt = '🥷> '
+let g:sneak#prompt = '🥷: '
 " sneak config END
 
 let g:fzf_tags_command = 'ctags -R'
