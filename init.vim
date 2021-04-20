@@ -63,6 +63,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'LunarWatcher/auto-pairs', { 'tag': '*' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
+Plug 'luochen1990/rainbow'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -143,6 +144,15 @@ colorscheme gruvbox-material
 " Highlight no breaking space characters
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
+
+" rainbow parenthesis and operators
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\           'guifgs': ['#8be9fd', '#50fa7b', '#ffff59', '#ff5555'],
+\           'guis': [''],
+\           'cterms': [''],
+\           'operators': '_=\|+\|-\|*\|<\|>\|\/\|<=\|>=\|||\|&&\|==\|!=\|===\|!==_',
+\}
 
 " Lightline config
 let g:lightline = {
