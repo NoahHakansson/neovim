@@ -21,8 +21,8 @@ map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
-nmap <BS> <nop>
-nmap <CR> <nop>
+nmap <BS> <Nop>
+nmap <CR> <Nop>
 " TAB bidnings
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
@@ -64,6 +64,7 @@ Plug 'LunarWatcher/auto-pairs', { 'tag': '*' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'luochen1990/rainbow'
+Plug 'RRethy/vim-illuminate'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -145,7 +146,27 @@ colorscheme gruvbox-material
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
 
-" rainbow parenthesis and operators
+" vim Iluminate
+" Time in milliseconds (default 0)
+let g:Illuminate_delay = 500
+" Don't highlight word under cursor (default: 1)
+let g:Illuminate_highlightUnderCursor = 1
+
+" COC
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+
+" rainbow parentheses and operators
 " // lala
 " //lala
 " 4 / 2 / 6/6
@@ -154,7 +175,7 @@ let g:rainbow_conf = {
 \   'guifgs': ['#8be9fd', '#50fa7b', '#ffff59', '#ff5555'],
 \   'guis': [''],
 \   'cterms': [''],
-\   'operators': '_=\|+\|\*\|-\||\|&\|;\|!\|?\|<\|>\|%\|/[^/]_',
+\   'operators': '_=\|+\|\*[^/]\|-\||\|&\|;\|!\|?\|<\|>\|%\|/[^/*]_',
 \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
 \   'separately': {
 \       '*': {},
@@ -190,8 +211,14 @@ vnoremap <silent> <leader>c :call NERDComment(1, 'toggle')<CR>
 let g:NERDTreeHijackNetrw = 0
 let g:rnvimr_ex_enable = 1
 
-nmap <silent> <space>r :RnvimrToggle<CR>
+nmap <silent> <leader>fr :RnvimrToggle<CR>
 " Ranger (rnvimr) config END
+
+map <leader>ff :Files<CR>
+map <leader>fh :Files ~/<CR>
+map <leader>fb :Buffers<CR>
+nnoremap <leader>fg :Rg<CR>
+nnoremap <leader>fm :Marks<CR>
 
 " Coc config
 " Bind tab and shift-tab to navigate autocomplete selection list.
@@ -317,11 +344,6 @@ let g:fzf_action = {
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
-
-map <leader>f :Files ~/<CR>
-map <leader>b :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
-nnoremap <leader>m :Marks<CR>
 
 " sneak cofig
 let g:sneak#label = 1
@@ -547,7 +569,7 @@ endfunction
 autocmd BufWritePre * call TrimWhiteSpace()
 
 " Identify the syntax highlighting group used at the cursor
-map <leader>h :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+map <leader>hh :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
