@@ -65,6 +65,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'luochen1990/rainbow'
 Plug 'RRethy/vim-illuminate'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
