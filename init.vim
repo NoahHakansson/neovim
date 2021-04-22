@@ -146,6 +146,10 @@ colorscheme gruvbox-material
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
 
+" lunarwatcher / auto pairs
+let g:AutoPairsMultilineBackspace = 1
+let g:AutoPairsMapBS = 1
+
 " vim Iluminate
 " Time in milliseconds (default 0)
 let g:Illuminate_delay = 500
@@ -164,6 +168,8 @@ nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+" coc-clangd
 
 
 " rainbow parentheses and operators
@@ -203,8 +209,10 @@ let g:lightline = {
 
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 0
-nnoremap <silent> <leader>c :call NERDComment(1, 'toggle')<CR>
-vnoremap <silent> <leader>c :call NERDComment(1, 'toggle')<CR>
+nnoremap <silent> <leader>cc :call NERDComment(1, 'toggle')<CR>
+vnoremap <silent> <leader>cc :call NERDComment(1, 'toggle')<CR>
+nnoremap <silent> <leader>cs :call NERDComment(1, 'sexy')<CR>
+vnoremap <silent> <leader>cs :call NERDComment(1, 'sexy')<CR>
 
 " Ranger (rnvimr) config
 " Make Ranger replace netrw and be the file explorer
@@ -214,6 +222,7 @@ let g:rnvimr_ex_enable = 1
 nmap <silent> <leader>fr :RnvimrToggle<CR>
 " Ranger (rnvimr) config END
 
+" fzf / files / grep
 map <leader>ff :Files<CR>
 map <leader>fh :Files ~/<CR>
 map <leader>fb :Buffers<CR>
@@ -221,9 +230,27 @@ nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>fm :Marks<CR>
 
 " Coc config
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 " Bind tab and shift-tab to navigate autocomplete selection list.
 inoremap <expr> <Tab> pumvisible() ? "\<Down>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
+
 " Coc config END
 
 " highlight NoBreakingSpace guibg=red guifg=white ctermbg=red ctermfg=white
