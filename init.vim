@@ -256,6 +256,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<Up>" : "\<S-Tab>"
 
 " Coc config END
 
+" pandoc config
+let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#syntax#conceal#use = 0
+
 " highlight NoBreakingSpace guibg=red guifg=white ctermbg=red ctermfg=white
 " syntax match NoBreakingSpace / /
 
