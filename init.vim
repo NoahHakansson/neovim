@@ -170,6 +170,7 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " coc-clangd
+nnoremap <silent> <leader>ss :CocCommand clangd.switchSourceHeader<CR>
 
 
 " rainbow parentheses and operators
