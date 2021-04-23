@@ -154,9 +154,12 @@ let g:AutoPairsMapBS = 1
 
 " vim Iluminate
 " Time in milliseconds (default 0)
-let g:Illuminate_delay = 500
+let g:Illuminate_delay = 700
 " Don't highlight word under cursor (default: 1)
-let g:Illuminate_highlightUnderCursor = 1
+let g:Illuminate_highlightUnderCursor = 0
+
+" coc-highlight
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " COC
 " GoTo code navigation.
@@ -181,7 +184,7 @@ nnoremap <silent> <leader>ss :CocCommand clangd.switchSourceHeader<CR>
 " 4 / 2 / 6/6
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\   'guifgs': ['#8be9fd', '#50fa7b', '#ffff59', '#ff5555'],
+\   'guifgs': ['#8be9fd', '#50fa7b', '#ffff79', '#ff5555'],
 \   'guis': [''],
 \   'cterms': [''],
 \   'operators': '_=\|+\|\*[^/]\|-\||\|&\|;\|!\|?\|<\|>\|%\|/[^/*]_',
