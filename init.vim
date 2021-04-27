@@ -118,9 +118,6 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'rhysd/vim-clang-format'
 " Add plugins to &runtimepath
 call plug#end()
-" https://github.com/joshdick/onedark.vim#neovim
-" let g:onedark_termcolors = 16
-" set background=dark
 " Floaterm
 " Floaterm
 let g:floaterm_width=0.6
@@ -130,12 +127,15 @@ let g:floaterm_autoclose=1
 " COLORSCHEME ---------------------------------------------------
 " let g:palenight_color_overrides = overrides#GetColors()
 " c++ style auto format
+" clang-format
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
-            \ "BreakBeforeBraces" : "Stroustrup"}
+            \ "AlignTrailingComments" : "true",
+            \ "BreakBeforeBraces" : "Stroustrup"
+            \}
 " c++ syntax highlighting
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
@@ -290,6 +290,8 @@ let g:ale_fixers = {
 \}
 let g:ale_fix_on_save = 0
 let g:ale_ruby_rubocop_executable = 'bundle'
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
 
 " Git related stuff -------------------------------------
 " Signify config
