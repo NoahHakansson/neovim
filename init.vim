@@ -16,6 +16,8 @@ nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <S-k> :call CocActionAsync('doHover')<CR>
 " bind ESC to close poups and remove highlighting from search.
 nmap <silent> <Esc> :call coc#float#close_all() <bar> :noh <CR>
+" bind to copy to clipboard
+vnoremap <leader>y "+y
 " unbind arrow keys and backspace+enter
 map <Left> <Nop>
 map <Right> <Nop>
@@ -23,6 +25,11 @@ map <Up> <Nop>
 map <Down> <Nop>
 nmap <BS> <Nop>
 nmap <CR> <Nop>
+" split resize bindings
+nnoremap <silent> <A-l> :vertical resize +5<CR>
+nnoremap <silent> <A-h> :vertical resize -5<CR>
+nnoremap <silent> <A-k> :res +5<CR>
+nnoremap <silent> <A-j> :res -5<CR>
 " TAB bidnings
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
@@ -133,8 +140,10 @@ let g:clang_format#style_options = {
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
+            \ "DerivePointerAlignment" : "false",
+            \ "PointerAlignment" : "Left",
             \ "AlignTrailingComments" : "true",
-            \ "BreakBeforeBraces" : "Stroustrup"
+            \ "BreakBeforeBraces" : "Stroustrup",
             \}
 " c++ syntax highlighting
 let g:cpp_class_scope_highlight = 1
@@ -147,6 +156,7 @@ colorscheme gruvbox-material
 " Highlight no breaking space characters
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
+
 
 " lunarwatcher / auto pairs
 let g:AutoPairsMultilineBackspace = 1
