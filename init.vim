@@ -12,12 +12,19 @@ set titlestring=Neovim\ \-\ %t
 set title
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
+
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <S-k> :call CocActionAsync('doHover')<CR>
+
 " bind ESC to close poups and remove highlighting from search.
 nmap <silent> <Esc> :call coc#float#close_all() <bar> :noh <CR>
+
 " bind to copy to clipboard
 vnoremap <leader>y "+y
+
+" bind to ctrl+n to <C-\><C-n> to enter normal mode in terminal
+tnoremap <C-n> <C-\><C-n>
+
 " unbind arrow keys and backspace+enter
 map <Left> <Nop>
 map <Right> <Nop>
@@ -41,10 +48,11 @@ nnoremap <Leader>7 7gt
 nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
 nnoremap <silent> <TAB> :tabn<CR>
+nnoremap <silent> <S-TAB> :tabp<CR>
 
 " floaterm
-nnoremap <silent> <S-t> :FloatermToggle<CR>
-tnoremap <silent> <S-t> <C-\><C-n>:FloatermToggle<CR>
+nnoremap <silent> <A-t> :FloatermToggle --name=compile1<CR>
+tnoremap <silent> <A-t> <C-\><C-n>:FloatermToggle --name=compile1<CR>
 let g:floaterm_width=0.6
 let g:floaterm_height=0.7
 let g:floaterm_wintitle=0
@@ -64,7 +72,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'jremmen/vim-ripgrep'
 Plug 'unblevable/quick-scope'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'ptzz/lf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'preservim/nerdcommenter'
 Plug 'LunarWatcher/auto-pairs', { 'tag': '*' }
@@ -194,7 +202,7 @@ nnoremap <silent> <leader>ss :CocCommand clangd.switchSourceHeader<CR>
 " 4 / 2 / 6/6
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\   'guifgs': ['#8be9fd', '#50fa7b', '#ffff79', '#ff5555'],
+\   'guifgs': ['#8be9fd', '#a29fff', '#ffff6d'],
 \   'guis': [''],
 \   'cterms': [''],
 \   'operators': '_=\|+\|\*[^/]\|-\||\|&\|;\|!\|?\|<\|>\|%\|/[^/*]_',
@@ -230,13 +238,14 @@ vnoremap <silent> <leader>cc :call NERDComment(1, 'toggle')<CR>
 nnoremap <silent> <leader>cs :call NERDComment(1, 'sexy')<CR>
 vnoremap <silent> <leader>cs :call NERDComment(1, 'sexy')<CR>
 
-" Ranger (rnvimr) config
-" Make Ranger replace netrw and be the file explorer
-let g:NERDTreeHijackNetrw = 0
-let g:rnvimr_ex_enable = 1
+" Lf (lf.vim) config
+let g:lf_map_keys = 0
+let g:lf_command_override = 'lf -command "set hidden"' " Always show hidden files
+let g:NERDTreeHijackNetrw = 0 " Add this line if you use NERDTree
+let g:lf_replace_netrw = 1 " Open lf when vim opens a directory
 
-nmap <silent> <leader>fr :RnvimrToggle<CR>
-" Ranger (rnvimr) config END
+nmap <silent> <leader>lf :Lf<CR>
+" Lf (lf.vim) config END
 
 " fzf / files / grep
 map <leader>ff :Files<CR>
