@@ -10,11 +10,16 @@ set smartcase
 set noshowmode
 set titlestring=Neovim\ \-\ %t
 set title
+set splitbelow
+set splitright
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
 
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <S-k> :call CocActionAsync('doHover')<CR>
+
+" bind to reload nvim config (this file)
+nnoremap <leader>sc :source $MYVIMRC<CR>
 
 " bind ESC to close poups and remove highlighting from search.
 nmap <silent> <Esc> :call coc#float#close_all() <bar> :noh <CR>
@@ -82,6 +87,8 @@ Plug 'luochen1990/rainbow'
 Plug 'RRethy/vim-illuminate'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tpope/vim-repeat'
+Plug 'puremourning/vimspector'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -176,6 +183,14 @@ let g:Illuminate_delay = 700
 " Don't highlight word under cursor (default: 1)
 let g:Illuminate_highlightUnderCursor = 0
 
+" Vimspector settings
+let g:vimspector_enable_mappings = 'HUMAN'
+nmap <leader>dr :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+" Vimspector settings (END)
+
 " coc-highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -195,6 +210,44 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " coc-clangd
 nnoremap <silent> <leader>ss :CocCommand clangd.switchSourceHeader<CR>
 
+" coc explorer
+let g:coc_explorer_global_presets = {
+\   '.vim': {
+\     'root-uri': '~/.vim',
+\   },
+\   'tab': {
+\     'position': 'tab',
+\     'quit-on-open': v:true,
+\   },
+\   'floating': {
+\     'position': 'floating',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingTop': {
+\     'position': 'floating',
+\     'floating-position': 'center-top',
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingLeftside': {
+\     'position': 'floating',
+\     'floating-position': 'left-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'floatingRightside': {
+\     'position': 'floating',
+\     'floating-position': 'right-center',
+\     'floating-width': 50,
+\     'open-action-strategy': 'sourceWindow',
+\   },
+\   'simplify': {
+\     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
+\   }
+\ }
+
+nmap <space>e :CocCommand explorer<CR>
+nmap <space>fe :CocCommand explorer --preset floating<CR>
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " rainbow parentheses and operators
 " // lala
@@ -251,7 +304,7 @@ nmap <silent> <leader>lf :Lf<CR>
 map <leader>ff :Files<CR>
 map <leader>fh :Files ~/<CR>
 map <leader>fb :Buffers<CR>
-nnoremap <leader>fg :Rg<CR>
+nnoremap <leader>fg :RG<space>
 nnoremap <leader>fm :Marks<CR>
 
 " Coc config
@@ -482,7 +535,7 @@ function ToggleNerdTreeFile()
 endfunction
 
 nmap - :Dirvish %<CR>
-map <leader>n :call ToggleNerdTreeFile()<CR>
+"map <leader>n :call ToggleNerdTreeFile()<CR>
 "" Quicker window movement
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
