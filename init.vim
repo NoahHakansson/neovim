@@ -186,7 +186,8 @@ let g:Illuminate_highlightUnderCursor = 0
 " Vimspector settings
 let g:vimspector_enable_mappings = 'HUMAN'
 nmap <leader>dr :VimspectorReset<CR>
-nmap <leader>de :VimspectorEval
+"nmap <leader>de :VimspectorEval
+nmap <leader>de <Plug>VimspectorBalloonEval
 nmap <leader>dw :VimspectorWatch
 nmap <leader>do :VimspectorShowOutput
 " Vimspector settings (END)
