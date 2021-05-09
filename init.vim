@@ -140,14 +140,13 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'rhysd/vim-clang-format'
 " Add plugins to &runtimepath
 call plug#end()
-" Floaterm
+
 " Floaterm
 let g:floaterm_width=0.6
 let g:floaterm_height=0.7
 let g:floaterm_wintitle=0
 let g:floaterm_autoclose=1
-" COLORSCHEME ---------------------------------------------------
-" let g:palenight_color_overrides = overrides#GetColors()
+
 " c++ style auto format
 " clang-format
 let g:clang_format#style_options = {
@@ -160,6 +159,7 @@ let g:clang_format#style_options = {
             \ "AlignTrailingComments" : "true",
             \ "BreakBeforeBraces" : "Stroustrup",
             \}
+
 " c++ syntax highlighting
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
