@@ -150,6 +150,8 @@ let g:floaterm_autoclose=1
 " c++ style auto format
 " clang-format
 let g:clang_format#style_options = {
+            \ "IndentWidth": 4,
+            \ "TabWidth": 4,
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
@@ -157,7 +159,7 @@ let g:clang_format#style_options = {
             \ "DerivePointerAlignment" : "false",
             \ "PointerAlignment" : "Left",
             \ "AlignTrailingComments" : "true",
-            \ "BreakBeforeBraces" : "Stroustrup",
+            \ "BreakBeforeBraces" : "Allman",
             \}
 
 " c++ syntax highlighting
