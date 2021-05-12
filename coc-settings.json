@@ -5,7 +5,6 @@
     "clangd.arguments": [
         "--completion-style=detailed"
     ],
-    // explorer
     "explorer.width": 30,
     "explorer.icon.enableNerdfont": true,
     "explorer.previewAction.onHover": false,

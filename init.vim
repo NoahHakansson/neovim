@@ -37,6 +37,13 @@ map <Up> <Nop>
 map <Down> <Nop>
 nmap <BS> <Nop>
 nmap <CR> <Nop>
+
+" bind hjkl movment in insert mode to ctrl-hjkl
+inoremap <c-k> <up>
+inoremap <c-j> <down>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+
 " split resize bindings
 nnoremap <silent> <A-l> :vertical resize +5<CR>
 nnoremap <silent> <A-h> :vertical resize -5<CR>
