@@ -157,8 +157,6 @@ let g:floaterm_autoclose=1
 " c++ style auto format
 " clang-format
 let g:clang_format#style_options = {
-            \ "IndentWidth": 4,
-            \ "TabWidth": 4,
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "true",
             \ "AlwaysBreakTemplateDeclarations" : "true",
@@ -553,8 +551,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
+
 " Search and Replace
-"nmap <Leader>s :%s//g<Left><Left>
+nmap <Leader>sr :%s/S\C/R/gc<left><Left><Left><Left><Left><left><left>
+
 " Find all occurences
 "nnoremap <leader>g :Rg<cr>
 " Catch :W save typo and turn it into :w so the save works anyway
