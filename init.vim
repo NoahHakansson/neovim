@@ -30,6 +30,9 @@ vnoremap <leader>y "+y
 " bind to ctrl+n to <C-\><C-n> to enter normal mode in terminal
 tnoremap <C-n> <C-\><C-n>
 
+" handle *.ejs files as html and javascript
+au BufNewFile,BufRead *.ejs set filetype=html.js
+
 " unbind arrow keys and backspace+enter
 map <Left> <Nop>
 map <Right> <Nop>
@@ -63,12 +66,15 @@ nnoremap <silent> <TAB> :tabn<CR>
 nnoremap <silent> <S-TAB> :tabp<CR>
 
 " floaterm
-nnoremap <silent> <A-t> :FloatermToggle --name=compile1<CR>
-tnoremap <silent> <A-t> <C-\><C-n>:FloatermToggle --name=compile1<CR>
-let g:floaterm_width=0.6
-let g:floaterm_height=0.7
-let g:floaterm_wintitle=0
-let g:floaterm_autoclose=1
+" floaterm for compiling
+nnoremap <silent> <A-c> :FloatermToggle --name=compile1<CR>
+tnoremap <silent> <A-c> <C-\><C-n>:FloatermToggle --name=compile1<CR>
+" floaterm for general use
+nnoremap <silent> <A-t> :FloatermToggle --name=terminal1<CR>
+tnoremap <silent> <A-t> <C-\><C-n>:FloatermToggle --name=terminal1<CR>
+let g:floaterm_width=0.7
+let g:floaterm_height=0.8
+let g:floaterm_autoclose=0
 " 24-bit color support
 set termguicolors
 
@@ -279,9 +285,7 @@ let g:rainbow_conf = {
 \       'vim': {
 \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 \       },
-\       'html': {
-\           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-\       },
+\       'html': 0,
 \       'css': 0,
 \   }
 \}
@@ -294,10 +298,10 @@ let g:lightline = {
 
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 0
-nnoremap <silent> <leader>cc :call NERDComment(1, 'toggle')<CR>
-vnoremap <silent> <leader>cc :call NERDComment(1, 'toggle')<CR>
-nnoremap <silent> <leader>cs :call NERDComment(1, 'sexy')<CR>
-vnoremap <silent> <leader>cs :call NERDComment(1, 'sexy')<CR>
+nnoremap <silent> <leader>cc :call nerdcommenter#Comment(1, 'toggle')<CR>
+vnoremap <silent> <leader>cc :call nerdcommenter#Comment(1, 'toggle')<CR>
+nnoremap <silent> <leader>cs :call nerdcommenter#Comment(1, 'sexy')<CR>
+vnoremap <silent> <leader>cs :call nerdcommenter#Comment(1, 'sexy')<CR>
 
 " Lf (lf.vim) config
 let g:lf_map_keys = 0
@@ -545,6 +549,7 @@ endfunction
 nmap - :Dirvish %<CR>
 "map <leader>n :call ToggleNerdTreeFile()<CR>
 "" Quicker window movement
+nnoremap <leader>wr <C-w>r
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
