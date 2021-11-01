@@ -102,6 +102,7 @@ Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'tpope/vim-repeat'
 Plug 'puremourning/vimspector'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
