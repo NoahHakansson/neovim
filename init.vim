@@ -12,6 +12,7 @@ set titlestring=Neovim\ \-\ %t
 set title
 set splitbelow
 set splitright
+set scrolloff=15
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
 
@@ -155,7 +156,9 @@ Plug 'rhysd/vim-clang-format'
 " Add plugins to &runtimepath
 call plug#end()
 
-" Floaterm
+" assembly
+autocmd BufEnter *.asm setfiletype nasm" Floaterm
+autocmd BufEnter *.s setfiletype nasm" Floaterm
 let g:floaterm_width=0.6
 let g:floaterm_height=0.7
 let g:floaterm_wintitle=0
@@ -165,13 +168,16 @@ let g:floaterm_autoclose=1
 " clang-format
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
-            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "AllowShortFunctionsOnASingleLine" : "false",
+            \ "AllowShortLoopsOnASingleLine" : "false",
+            \ "AllowShortBlocksOnASingleLine" : "false",
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
             \ "DerivePointerAlignment" : "false",
             \ "PointerAlignment" : "Left",
             \ "AlignTrailingComments" : "true",
-            \ "BreakBeforeBraces" : "Allman",
+            \ "BreakBeforeBraces" : "Attach",
             \}
 
 " c++ syntax highlighting
@@ -185,7 +191,6 @@ colorscheme gruvbox-material
 " Highlight no breaking space characters
 " highlight NoBreakingSpace guibg=red ctermbg=red guifg=white ctermfg=white
 " syntax match NoBreakingSpace /.* .*/
-
 
 " lunarwatcher / auto pairs
 let g:AutoPairsMultilineBackspace = 1
@@ -549,7 +554,7 @@ endfunction
 
 nmap - :Dirvish %<CR>
 "map <leader>n :call ToggleNerdTreeFile()<CR>
-"" Quicker window movement
+" Quicker window movement
 nnoremap <leader>wr <C-w>r
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
