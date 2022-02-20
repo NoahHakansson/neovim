@@ -13,11 +13,15 @@ set title
 set splitbelow
 set splitright
 set scrolloff=15
+set mouse=a
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
 
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <S-k> :call CocActionAsync('doHover')<CR>
+nmap <leader>t :TagbarOpenAutoClose<CR>
+" remove all trailing whitespaces
+:nnoremap <silent> <leader>wd :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 " bind to reload nvim config (this file)
 nnoremap <leader>sc :source $MYVIMRC<CR>
@@ -33,6 +37,8 @@ tnoremap <C-n> <C-\><C-n>
 
 " handle *.ejs files as html and javascript
 au BufNewFile,BufRead *.ejs set filetype=html.js
+" handle flex as lex files
+au BufReadPost *.flex set syntax=lex
 
 " unbind arrow keys and backspace+enter
 map <Left> <Nop>
@@ -95,6 +101,7 @@ Plug 'ptzz/lf.vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'preservim/nerdcommenter'
 Plug 'LunarWatcher/auto-pairs', { 'tag': '*' }
+Plug 'gcmt/wildfire.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'luochen1990/rainbow'
@@ -104,6 +111,10 @@ Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'tpope/vim-repeat'
 Plug 'puremourning/vimspector'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+Plug 'mklabs/vim-nodemate'
+" Ctags
+Plug 'preservim/tagbar'
+Plug 'universal-ctags/ctags'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -166,6 +177,7 @@ let g:floaterm_autoclose=1
 
 " c++ style auto format
 " clang-format
+nmap <leader>cf :ClangFormat<CR>
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AllowShortIfStatementsOnASingleLine" : "false",
@@ -292,6 +304,7 @@ let g:rainbow_conf = {
 \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 \       },
 \       'html': 0,
+\       'js': "default",
 \       'css': 0,
 \   }
 \}
@@ -304,6 +317,7 @@ let g:lightline = {
 
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
 nnoremap <silent> <leader>cc :call nerdcommenter#Comment(1, 'toggle')<CR>
 vnoremap <silent> <leader>cc :call nerdcommenter#Comment(1, 'toggle')<CR>
 nnoremap <silent> <leader>cs :call nerdcommenter#Comment(1, 'sexy')<CR>
