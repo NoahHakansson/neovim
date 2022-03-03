@@ -14,6 +14,30 @@ set splitbelow
 set splitright
 set scrolloff=15
 set mouse=a
+"
+" automatic hybrid line numbers
+:set number
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+:  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+:augroup END
+"
+"
+" Quality of life rebinds
+nnoremap Y y$
+nnoremap n nzzzv
+nnoremap N Nzzzv
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" Remaps for swedish keyboard layout.
+nnoremap § $
+"
+
 " Map the leader key to SPACE
 let mapleader="\<SPACE>"
 
@@ -69,16 +93,15 @@ nnoremap <Leader>6 6gt
 nnoremap <Leader>7 7gt
 nnoremap <Leader>8 8gt
 nnoremap <Leader>9 9gt
-nnoremap <silent> <TAB> :tabn<CR>
-nnoremap <silent> <S-TAB> :tabp<CR>
+nnoremap <silent> <leader><TAB> :tabn<CR>
 
 " floaterm
 " floaterm for compiling
-nnoremap <silent> <A-c> :FloatermToggle --name=compile1<CR>
-tnoremap <silent> <A-c> <C-\><C-n>:FloatermToggle --name=compile1<CR>
+nnoremap <silent> <c-c> :FloatermToggle --name=compile1<CR>
+tnoremap <silent> <c-c> <C-\><C-n>:FloatermToggle --name=compile1<CR>
 " floaterm for general use
-nnoremap <silent> <A-t> :FloatermToggle --name=terminal1<CR>
-tnoremap <silent> <A-t> <C-\><C-n>:FloatermToggle --name=terminal1<CR>
+nnoremap <silent> <c-e> :FloatermToggle --name=terminal1<CR>
+tnoremap <silent> <c-e> <C-\><C-n>:FloatermToggle --name=terminal1<CR>
 let g:floaterm_width=0.7
 let g:floaterm_height=0.8
 let g:floaterm_autoclose=0
@@ -115,6 +138,8 @@ Plug 'mklabs/vim-nodemate'
 " Ctags
 Plug 'preservim/tagbar'
 Plug 'universal-ctags/ctags'
+" taglist
+Plug 'yegappan/taglist'
 " Work habits
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
@@ -223,6 +248,9 @@ nmap <leader>dw :VimspectorWatch
 nmap <leader>do :VimspectorShowOutput
 " Vimspector settings (END)
 
+" Vim-Fugitive
+nnoremap <leader>gs :G<CR>
+
 " coc-highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -309,11 +337,16 @@ let g:rainbow_conf = {
 \   }
 \}
 
-" Lightline config
 let g:lightline = {
       \ 'colorscheme': 'gruvbox_material',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
       \ }
-" Lightline config END
 
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 0
@@ -502,7 +535,7 @@ highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
 highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
 
 " Cool prompts
-let g:sneak#prompt = '🥷: '
+let g:sneak#prompt = 'Sneak: '
 " sneak config END
 
 let g:fzf_tags_command = 'ctags -R'
