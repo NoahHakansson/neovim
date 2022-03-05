@@ -97,14 +97,14 @@ nnoremap <silent> <leader><TAB> :tabn<CR>
 
 " floaterm
 " floaterm for compiling
-nnoremap <silent> <c-c> :FloatermToggle --name=compile1<CR>
-tnoremap <silent> <c-c> <C-\><C-n>:FloatermToggle --name=compile1<CR>
+nnoremap <silent> <A-c> :FloatermToggle --name=compile1<CR>
+tnoremap <silent> <A-c> <C-\><C-n>:FloatermToggle --name=compile1<CR>
 " floaterm for general use
-nnoremap <silent> <c-e> :FloatermToggle --name=terminal1<CR>
-tnoremap <silent> <c-e> <C-\><C-n>:FloatermToggle --name=terminal1<CR>
-let g:floaterm_width=0.7
-let g:floaterm_height=0.8
-let g:floaterm_autoclose=0
+nnoremap <silent> <A-t> :FloatermToggle --name=terminal1<CR>
+tnoremap <silent> <A-t> <C-\><C-n>:FloatermToggle --name=terminal1<CR>
+let g:floaterm_width=0.9
+let g:floaterm_height=0.9
+let g:floaterm_autoclose=1
 " 24-bit color support
 set termguicolors
 
@@ -193,12 +193,8 @@ Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 " assembly
-autocmd BufEnter *.asm setfiletype nasm" Floaterm
-autocmd BufEnter *.s setfiletype nasm" Floaterm
-let g:floaterm_width=0.6
-let g:floaterm_height=0.7
-let g:floaterm_wintitle=0
-let g:floaterm_autoclose=1
+autocmd BufEnter *.asm setfiletype nasm
+autocmd BufEnter *.s setfiletype nasm
 
 " c++ style auto format
 " clang-format
