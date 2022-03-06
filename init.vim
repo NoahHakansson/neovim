@@ -35,7 +35,7 @@ inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
 
 " Remaps for swedish keyboard layout.
-nnoremap § $
+noremap § $
 "
 
 " Map the leader key to SPACE
@@ -79,10 +79,11 @@ inoremap <c-h> <left>
 inoremap <c-l> <right>
 
 " split resize bindings
-nnoremap <silent> <A-l> :vertical resize +5<CR>
-nnoremap <silent> <A-h> :vertical resize -5<CR>
-nnoremap <silent> <A-k> :res +5<CR>
-nnoremap <silent> <A-j> :res -5<CR>
+" nnoremap <silent> <A-l> :vertical resize +5<CR>
+" nnoremap <silent> <A-h> :vertical resize -5<CR>
+" nnoremap <silent> <A-j> :res +5<CR>
+" nnoremap <silent> <A-k> :res -5<CR>
+
 " TAB bidnings
 nnoremap <Leader>1 1gt
 nnoremap <Leader>2 2gt
@@ -111,12 +112,16 @@ set termguicolors
 set grepprg=rg\ --vimgrep
 
 call plug#begin('~/.vim/plugged')
-" Plugin options
+" Neovim Lua plugins
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+" Vim Plugins
 Plug 'sheerun/vim-polyglot'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-vinegar'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
 Plug 'jremmen/vim-ripgrep'
 Plug 'unblevable/quick-scope'
@@ -361,12 +366,11 @@ let g:lf_replace_netrw = 1 " Open lf when vim opens a directory
 nmap <silent> <leader>lf :Lf<CR>
 " Lf (lf.vim) config END
 
-" fzf / files / grep
-map <leader>ff :Files<CR>
-map <leader>fh :Files ~/<CR>
-map <leader>fb :Buffers<CR>
-nnoremap <leader>fg :RG<space>
-nnoremap <leader>fm :Marks<CR>
+" Telescope bindings
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Coc config
 " TextEdit might fail if hidden is not set.
@@ -445,65 +449,6 @@ highlight QuickScopeSecondary guifg='#afff5f' gui=underline ctermfg=81 cterm=und
 let g:qs_max_chars=150
 " Quickscope config END
 
-" Colors for ALE in statusline
-hi WarningColor guibg=#E5C07B guifg=#1E1E1E ctermbg=Yellow ctermfg=Black
-hi ErrorColor guibg=#DF6A63 guifg=#1E1E1E ctermbg=Red ctermfg=Black
-
-function! CreateStatusline()
-  let statusline=''
-  let statusline.='%#diffadd#'
-  let statusline.=' %{FugitiveHead()} '
-  let statusline.='%#CursorlineNr#'
-  let statusline.=' %f'                  " Show filename
-  let statusline.=' %m'                  " Show modified tag
-  let statusline.='%='                   " Switch elements to the right
-  if get(g:, 'streamline_enable_devicons', 1) && exists('*WebDevIconsGetFileTypeSymbol')
-      let statusline.=' %{WebDevIconsGetFileTypeSymbol()}'
-  else
-      let statusline.=' %y'              " Show filetype
-  endif
-  let statusline.=' ☰ %l:%c'             " Show line number and column
-  let statusline.=' %p%% '               " Show percentage
-  let statusline.='▏'
-  let statusline.='%#WarningColor#'
-  let statusline.='%{GetAleStatus()[0]}'
-  let statusline.='%#ErrorColor#'
-  let statusline.='%{GetAleStatus()[1]}'
-
-  return statusline
-endfunction
-
-" Lags, use this if change to faster terminal
-"function! GitBranch()
-"    let l:branch = system('cd '.expand('%:p:h').' && git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d "\n"')
-"    return !strlen(l:branch) || !isdirectory(expand('%:p:h')) ? '' : '▏' . l:branch . ' '
-"endfunction
-
-function GetAleStatus()
-    let l:counts = ale#statusline#Count(bufnr(''))
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:formated_errors = l:all_errors == 0 ? '' : '▏✗ ' . l:all_errors . ' '
-    let l:all_warnings = l:counts.total - l:all_errors
-    let l:formated_warnings = l:all_warnings == 0 ? '' : '▏⊖ ' . l:all_warnings . ' '
-    return [l:formated_warnings, l:formated_errors]
-endfunction
-"------------------------------------------------------------------------------
-
-" colorscheme MaterialPalenightTheme
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
-let g:neomake_javascript_eslint_maker = {
-\ 'args': ['--no-color', '--format', 'compact'],
-\ 'errorformat': '%f: line %l\, col %c\, %m'
-\ }
-let g:neomake_javascript_eslint_maker = { 'args': ['--no-color', '--format', 'compact'], 'errorformat': '%f: line %l\, col %c\, %m' }
-let g:neomake_verbose = 0
-let g:go_highlight_types = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_fmt_command = "goimports"
-" autocmd! BufWritePost * Neomake
-" autocmd! BufReadPost * Neomake
 " FZF Config
 " This is the default extra key bindings
 let g:fzf_action = {
@@ -519,20 +464,17 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 
 " sneak cofig
 let g:sneak#label = 1
-
 " case insensitive sneak
 let g:sneak#use_ic_scs = 1
-
 " immediately move to the next instance of search, if you move the cursor sneak is back to default behavior
 let g:sneak#s_next = 1
-
+" Cool prompts
+let g:sneak#prompt = 'Sneak: '
 " Change the colors
 highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
 highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
-
-" Cool prompts
-let g:sneak#prompt = 'Sneak: '
 " sneak config END
+
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
