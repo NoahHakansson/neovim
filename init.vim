@@ -14,6 +14,7 @@ set splitbelow
 set splitright
 set scrolloff=15
 set mouse=a
+set cursorline
 "
 " automatic hybrid line numbers
 :set number
