@@ -1,41 +1,45 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+-- Quality of life
+vim.keymap.set('n', '<leader>w', '<cmd>w<cr>', { noremap = true, silent = true, desc = '[W]rite Buffer' })
+vim.keymap.set('n', '<leader>q', '<cmd>q<cr>', { noremap = true, silent = true, desc = '[Q]uit Buffer' })
+vim.keymap.set('n', '<leader>E', '<cmd>GoIfErr<cr>', { noremap = true, silent = true, desc = 'Add If[E]rror' })
 
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- basic navigation
+vim.keymap.set('n', '<leader>dh', '<C-w>h', { noremap = true, silent = true, desc = 'move to left window' })
+vim.keymap.set('n', '<leader>dj', '<C-w>j', { noremap = true, silent = true, desc = 'move to bottom window' })
+vim.keymap.set('n', '<leader>dk', '<C-w>k', { noremap = true, silent = true, desc = 'move to top window' })
+vim.keymap.set('n', '<leader>dl', '<C-w>l', { noremap = true, silent = true, desc = 'move to right window' })
+vim.keymap.set('n', '<leader>dt', '<cmd>tabNext<cr>', { noremap = true, silent = true, desc = 'move to next tab (tabNext)' })
+vim.keymap.set('n', '<leader>ds', '<C-w>s', { noremap = true, silent = true, desc = 'split window horizontally' })
+vim.keymap.set('n', '<leader>dv', '<C-w>v', { noremap = true, silent = true, desc = 'split window vertically' })
+vim.keymap.set('n', '<leader>dc', '<C-w>c', { noremap = true, silent = true, desc = 'close window' })
+vim.keymap.set('n', '<leader>dq', '<C-w>q', { noremap = true, silent = true, desc = 'quit window' })
+vim.keymap.set('n', '<leader>do', '<C-w>o', { noremap = true, silent = true, desc = 'close all other windows' })
+vim.keymap.set('n', '<leader>dw', '<C-w>w', { noremap = true, silent = true, desc = 'move to next window' })
+vim.keymap.set('n', '<leader>d+', '<C-w>+', { noremap = true, silent = true, desc = 'increase window height' })
+vim.keymap.set('n', '<leader>d-', '<C-w>-', { noremap = true, silent = true, desc = 'decrease window height' })
+vim.keymap.set('n', '<leader>d>', '<C-w>>', { noremap = true, silent = true, desc = 'increase window width' })
+vim.keymap.set('n', '<leader>d<', '<C-w><', { noremap = true, silent = true, desc = 'decrease window width' })
+vim.keymap.set('n', '<leader>d=', '<C-w>=', { noremap = true, silent = true, desc = 'balance window sizes' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
---
--- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
--- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Turn off highlight when pressing Esc
+vim.keymap.set('n', '<Esc>', '<cmd>noh <CR>', { noremap = false, silent = true })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- fugitive
+-- vim.keymap.set('n', '<leader>gg', '<cmd>G<cr>', { desc = 'fugitive' })
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- magical base64 encoding/decoding
+vim.keymap.set('n', '<M-e>', 'viWy:let @"=system("openssl base64 -A", @")<cr>gv""P', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-d>', 'viWy:let @"=system("openssl base64 -A -d", @")<cr>gv""P', { noremap = true, silent = true })
 
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
+-- Center next/previous search
+vim.keymap.set('n', 'n', 'nzzzv', { noremap = true, silent = true })
+vim.keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true })
+
+-- todo-comments
+vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<cr>', { noremap = true, silent = true, desc = '[S]earch [T]odos' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
