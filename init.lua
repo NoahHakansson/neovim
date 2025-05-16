@@ -96,6 +96,12 @@ vim.g.have_nerd_font = true
 -- Go templ language server, treesitter etc... needs to recongize the .templ file type
 vim.filetype.add { extension = { templ = 'templ' } }
 
+-- unbind default LSP keymaps
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'grn')
+
 -- [[ Setting options ]]
 require 'options'
 

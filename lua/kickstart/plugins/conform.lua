@@ -5,15 +5,16 @@ return {
     cmd = { 'ConformInfo' },
     keys = {
       {
-        '<leader>f',
+        '<leader>lf',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          require('conform').format({ async = true, lsp_format = 'fallback' })
         end,
         mode = '',
         desc = '[F]ormat buffer',
       },
     },
     opts = {
+      -- log_level = vim.log.levels.DEBUG,
       notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
@@ -24,7 +25,7 @@ return {
           return nil
         else
           return {
-            timeout_ms = 500,
+            timeout_ms = 5000,
             lsp_format = 'fallback',
           }
         end
@@ -36,6 +37,8 @@ return {
       },
 
       formatters_by_ft = {
+        typescript = { lsp_format = 'prefer' },
+        javascript = { lsp_format = 'prefer' },
         lua = { 'stylua' },
         sql = { 'sqlfluff', timeout_ms = 15000 },
         -- Conform can also run multiple formatters sequentially
