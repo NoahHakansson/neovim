@@ -1,3 +1,8 @@
+# Neovim config
+*This is a fork of [dam9000/kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)*
+
+# **NOTE: Below is the orginal `README.md` file**
+
 # kickstart-modular.nvim
 
 ## Introduction
