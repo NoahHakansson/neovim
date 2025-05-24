@@ -37,7 +37,9 @@ vim.keymap.set('n', '<leader>lk', function()
   vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Removed quickfix bind in favor of trouble.nvim
+-- vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Center next/previous search
 vim.keymap.set('n', 'n', 'nzzzv', { noremap = true, silent = true })
